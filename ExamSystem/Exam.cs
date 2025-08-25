@@ -9,19 +9,28 @@ namespace ExamSystem
 {
     public abstract class Exam
     {
+        #region Properties
+        public string ExamName { get; set; }
+
         public int ExamTime { get; set; }
         public int NumberOfQuestions { get; set; }
         public Question[] Questions { get; set; }
+        #endregion
 
-        protected Exam(int time, int numberOfQuestions, Question[] questions)
+        #region Constructor
+        public Exam(string name, int time, int numberOfQuestions, Question[] questions)
         {
+            ExamName = name;
             ExamTime = time;
             NumberOfQuestions = numberOfQuestions;
             Questions = questions;
         }
+        #endregion
 
-
+        #region Methods
         public abstract void ShowExam();
     }
+       
+        #endregion    
 
-}
+    }

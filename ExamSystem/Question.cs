@@ -12,17 +12,20 @@ namespace ExamSystem
     {
         public abstract class Question : ICloneable,IComparable<Question>
         {
-            // Core properties
+
+            #region Properies
             public string Header { get; set; }
             public string Body { get; set; }
             public int Mark { get; set; }
 
-            // Answers
+
             public Answer[] QuestionAnswers { get; set; }
             public Answer RightAnswer { get; set; }
-            public Answer? ReceivedAnswer { get; set; } // Student's answer
+            public Answer? ReceivedAnswer { get; set; } // Student's answer 
+            #endregion
 
-            // Constructor
+            #region Constructor
+
             protected Question(string header, string body, int mark, Answer[] answers, Answer rightAnswer)
             {
                 Header = header;
@@ -30,10 +33,11 @@ namespace ExamSystem
                 Mark = mark;
                 QuestionAnswers = answers;
                 RightAnswer = rightAnswer;
-                ReceivedAnswer = null; 
+                ReceivedAnswer = null;
             }
+            #endregion
 
-            // Methods
+            #region Methods
             public override string ToString()
             {
                 return $"{Header}\n{Body} (Mark: {Mark})";
@@ -42,7 +46,7 @@ namespace ExamSystem
             public bool IsCorrect()
             {
                 return ReceivedAnswer != null && ReceivedAnswer.AnswerId == RightAnswer.AnswerId;
-            }
+            } 
 
             public int CompareTo(Question? other)
             {
@@ -56,6 +60,8 @@ namespace ExamSystem
             }
 
             public abstract void ShowQuestion();
+            #endregion
+
         }
     }
 

@@ -9,9 +9,12 @@ namespace ExamSystem
 {
     public class PracticalExam : Exam
     {
-        public PracticalExam(int time, int numberOfQuestions, Question[] questions)
-       : base(time, numberOfQuestions, questions) { }
+        #region Constructor
+        public PracticalExam(string name, int time, int numberOfQuestions, Question[] questions)
+      : base(name, time, numberOfQuestions, questions) { }
+        #endregion
 
+        #region Methods
         public override void ShowExam()
         {
             Console.WriteLine("Practical Exam");
@@ -21,6 +24,7 @@ namespace ExamSystem
                 Console.WriteLine($"Correct Answer: {q.RightAnswer}\n");
                 Console.WriteLine("Good Luck <3");
             }
-        }
+        } 
+        #endregion  
     }
 }

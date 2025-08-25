@@ -9,9 +9,12 @@ namespace ExamSystem
 {
     public class FinalExam : Exam
     {
-        public FinalExam(int time, int numberOfQuestions, Question[] questions)
-        : base(time, numberOfQuestions, questions) { }
+        #region Constructor
+        public FinalExam(string name, int time, int numberOfQuestions, Question[] questions)
+      : base(name, time, numberOfQuestions, questions) { }
+        #endregion
 
+        #region Methods
         public override void ShowExam()
         {
             Console.WriteLine("Final Exam");
@@ -24,7 +27,8 @@ namespace ExamSystem
                 totalMark += q.Mark;
             }
             Console.WriteLine($"Total Exam Marks = {totalMark}");
-        }
+        } 
+        #endregion  
 
     }
 }

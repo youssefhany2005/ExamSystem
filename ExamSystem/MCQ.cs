@@ -7,48 +7,78 @@ using System.Threading.Tasks;
 
 namespace ExamSystem
 {
+    #region Constructor
     public class MCQ : Question
     {
-        public MCQ(string body, int mark, Answer[] answers, Answer rightAnswer)
-         : base("MCQ", body, mark, answers, rightAnswer)
+        public MCQ()
+         : base("MCQ", "", 0, new Answer[4], null)
         {
         }
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-        public override void ShowQuestion()
-        {
-            Console.WriteLine(ToString());
+        #endregion
 
-            foreach (var answer in QuestionAnswers)
+    #region Methods
+
+        public void SetBody()
+        {
+            Console.Write("Enter Question: ");
+            Body = Console.ReadLine()!;
+        }
+
+        public void SetMark()
+        {
+            Console.Write("Enter mark: ");
+            Mark = int.Parse(Console.ReadLine()!);
+        }
+
+        public void SetAnswers()
+        {
+            for (int i = 0; i < QuestionAnswers.Length; i++)
             {
-                Console.WriteLine(answer.ToString());
+                Console.Write($"Enter Choice {i + 1}: ");
+                QuestionAnswers[i] = new Answer(i + 1, Console.ReadLine()!);
             }
-            while (true)
+        }
+
+        public void SetRightAnswer()
+        {
+            int RightAnswerId;
+            bool valid = false;
+
+            do
             {
-                Console.Write("Enter the Answer Id: ");
+                Console.Write("Enter the Right Choice : ");
                 string? input = Console.ReadLine()?.Trim();
-                int RightAnswerId;
+
                 if (int.TryParse(input, out RightAnswerId))
                 {
-                    bool found = false;
+                    // Check if the entered id exists in the answers
                     foreach (var ans in QuestionAnswers)
                     {
                         if (ans.AnswerId == RightAnswerId)
                         {
-                            ReceivedAnswer = ans;
-                            found = true;
+                            RightAnswer = ans;
+                            valid = true;
                             break;
                         }
                     }
-                    if (found)
-                        break;
                 }
 
-                Console.WriteLine("Invalid choice");
-            }
+                if (!valid)
+                    Console.WriteLine("Invalid choice");
+
+            } while (!valid);
+        }
+
+        public override void ShowQuestion()
+        {
+            Console.WriteLine(Body);
+            foreach (var a in QuestionAnswers)
+                Console.WriteLine($"{a.AnswerId}) {a.AnswerText}");
         }
     }
-}   
+        #endregion
+    
+}
+    
+
 

@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 namespace ExamSystem
 {
-    internal class Answer : ICloneable
+    public class Answer : ICloneable
     {
+        #region Properties
         public int AnswerId { get; set; }
         public string? AnswerText { get; set; }
+        #endregion
+
+        #region Constructor
 
         public Answer(int _anwseriId, string _answerText)
         {
             AnswerId = _anwseriId;
             AnswerText = _answerText;
         }
+        #endregion
+
+        #region Methods
         public override string ToString()
         {
             return $"{AnswerId}. {AnswerText}";
@@ -24,6 +31,7 @@ namespace ExamSystem
         public object Clone()
         {
             return new Answer(AnswerId, AnswerText);
-        }
+        } 
+        #endregion  
     }
 }

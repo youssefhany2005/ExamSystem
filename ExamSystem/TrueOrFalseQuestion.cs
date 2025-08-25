@@ -9,40 +9,74 @@ namespace ExamSystem
 {
     public class TrueOrFalseQuestion : Question
     {
-        public TrueOrFalseQuestion(string body , int mark ,Answer rightAnswer) 
-       :base("True Or False", body, mark,new Answer[] {
+        #region Constructor
+        public TrueOrFalseQuestion()
+     : base("True Or False", "", 0, new Answer[] {
                       new Answer(1, "True"),
                       new Answer(2, "False")
-                      }, rightAnswer)
+                    }, null)
         {
-            
+
         }
-        public override void ShowQuestion()
+        #endregion
+
+        #region Methods
+        public void SetQuestionBody()
         {
-            while (true)
+            Console.Write("Enter Question ");
+            Body = Console.ReadLine()!;
+        }
+
+        public void SetMark()
+        {
+            Console.Write("Enter The Number Of Marks For That Question : ");
+            Mark = int.Parse(Console.ReadLine()!);
+        }
+        //Didn't need to set answers as they are always True or False
+        public void SetRightAnswer()
+        {
+            string? answer;
+            int RightAnswerId;
+            do
             {
-                Console.WriteLine(ToString());
-                foreach (var answer in QuestionAnswers)
+                Console.Write("Enter right answer True(1) Or False(2) ");
+                answer = Console.ReadLine()?.Trim();
+            } while (!int.TryParse(answer, out RightAnswerId) || (RightAnswerId != 1 && RightAnswerId != 2));
+
+            foreach (var ans in QuestionAnswers)
+            {
+                if (ans.AnswerId == RightAnswerId)
                 {
-                    Console.WriteLine(answer.ToString());
+                    RightAnswer = ans;
+                    break;
                 }
-                Console.Write("Your answer 1 = True / 2 = False): ");
-                string? Answer = Console.ReadLine()?.Trim();
-                int RightAnswerId;
-                if (int.TryParse(Answer, out RightAnswerId))
-                {
-                    foreach (var ans in QuestionAnswers)
-                    {
-                        if (ans.AnswerId == RightAnswerId)
-                        {
-                            ReceivedAnswer = ans;
-                            break;
-                        }
-                    }
-                }
-                else
-                    Console.WriteLine("Invalid Answer");
             }
         }
+
+        public override void ShowQuestion()
+        {
+            Console.WriteLine(Body);
+            foreach (var a in QuestionAnswers)
+                Console.WriteLine($"{a.AnswerId}) {a.AnswerText}");
+
+            string? input;
+            int choice;
+            do
+            {
+                Console.Write("Your answer True(1) Or False(2): ");
+                input = Console.ReadLine()?.Trim();
+            } while (!int.TryParse(input, out choice) || (choice != 1 && choice != 2));
+
+            foreach (var ans in QuestionAnswers)
+            {
+                if (ans.AnswerId == choice)
+                {
+                    ReceivedAnswer = ans;
+                    break;
+                }
+            }
+        } 
+        #endregion  
+
     }
 }

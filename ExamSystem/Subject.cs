@@ -12,15 +12,25 @@ namespace ExamSystem
         public string SubjectName { get; set; }
         public Exam SubjectExam { get; set; }
 
-        public Subject(int id, string name)
+        public Subject(int id, string name, Exam exam)
         {
             SubjectId = id;
             SubjectName = name;
+            SubjectExam = exam;
         }
 
-        public void CreateExam(Exam exam)
+        public void CreateExam()
         {
-            SubjectExam = exam;
+            SubjectExam.ShowExam();
+        }
+
+        public void ShowSubjectData()
+        {
+            Console.WriteLine($"Subject: {SubjectName} (ID: {SubjectId})");
+            Console.WriteLine($"Exam: {SubjectExam.ExamName}");
+            Console.WriteLine($"Duration: {SubjectExam.ExamTime} minutes");
+            Console.WriteLine($"Number of Questions: {SubjectExam.NumberOfQuestions}");
+            Console.WriteLine("-------------------------");
         }
 
         public override string ToString()
