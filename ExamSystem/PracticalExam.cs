@@ -18,10 +18,10 @@ namespace ExamSystem
         public override void ShowExam()
         {
             Console.WriteLine("Practical Exam");
-            foreach (var q in Questions)
+            foreach (var question in Questions)
             {
-                q.ShowQuestion();
-                Console.WriteLine($"Correct Answer: {q.RightAnswer}\n");
+                question.ShowQuestion();
+                Console.WriteLine($"Correct Answer: {question.RightAnswer}\n");
                 Console.WriteLine("Good Luck <3");
             }
         } 

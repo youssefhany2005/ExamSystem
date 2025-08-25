@@ -19,12 +19,12 @@ namespace ExamSystem
         {
             Console.WriteLine("Final Exam");
             int totalMark = 0;
-            foreach (var q in Questions)
+            foreach (var question in Questions)
             {
-                q.ShowQuestion();
+                question.ShowQuestion();
                 Console.WriteLine();
                 Console.WriteLine("Good Luck <3");
-                totalMark += q.Mark;
+                totalMark += question.Mark;
             }
             Console.WriteLine($"Total Exam Marks = {totalMark}");
         } 

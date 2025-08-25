@@ -42,31 +42,30 @@ namespace ExamSystem
         public void SetRightAnswer()
         {
             int RightAnswerId;
-            bool valid = false;
+            bool IsvalidChoice = false;
 
             do
             {
                 Console.Write("Enter the Right Choice : ");
-                string? input = Console.ReadLine()?.Trim();
+                string? Choice = Console.ReadLine()?.Trim();
 
-                if (int.TryParse(input, out RightAnswerId))
+                if (int.TryParse(Choice, out RightAnswerId))
                 {
-                    // Check if the entered id exists in the answers
                     foreach (var ans in QuestionAnswers)
                     {
                         if (ans.AnswerId == RightAnswerId)
                         {
                             RightAnswer = ans;
-                            valid = true;
+                            IsvalidChoice = true;
                             break;
                         }
                     }
                 }
 
-                if (!valid)
+                if (!IsvalidChoice)
                     Console.WriteLine("Invalid choice");
 
-            } while (!valid);
+            } while (!IsvalidChoice);
         }
 
         public override void ShowQuestion()

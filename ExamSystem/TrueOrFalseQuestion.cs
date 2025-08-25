@@ -32,6 +32,7 @@ namespace ExamSystem
             Console.Write("Enter The Number Of Marks For That Question : ");
             Mark = int.Parse(Console.ReadLine()!);
         }
+
         //Didn't need to set answers as they are always True or False
         public void SetRightAnswer()
         {
@@ -59,17 +60,17 @@ namespace ExamSystem
             foreach (var a in QuestionAnswers)
                 Console.WriteLine($"{a.AnswerId}) {a.AnswerText}");
 
-            string? input;
-            int choice;
+            string? Q;
+            int Choice;
             do
             {
                 Console.Write("Your answer True(1) Or False(2): ");
-                input = Console.ReadLine()?.Trim();
-            } while (!int.TryParse(input, out choice) || (choice != 1 && choice != 2));
+                Q = Console.ReadLine()?.Trim();
+            } while (!int.TryParse(Q, out Choice) || (Choice != 1 && Choice != 2));
 
             foreach (var ans in QuestionAnswers)
             {
-                if (ans.AnswerId == choice)
+                if (ans.AnswerId == Choice)
                 {
                     ReceivedAnswer = ans;
                     break;
