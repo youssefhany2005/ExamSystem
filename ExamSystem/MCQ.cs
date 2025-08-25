@@ -26,9 +26,27 @@ namespace ExamSystem
 
         public void SetMark()
         {
-            Console.Write("Enter mark: ");
-            Mark = int.Parse(Console.ReadLine()!);
+            int mark;
+            bool valid = false;
+
+            do
+            {
+                Console.Write("Enter mark for this question: ");
+                string? input = Console.ReadLine()?.Trim();
+
+                if (int.TryParse(input, out mark) && mark > 0)
+                {
+                    Mark = mark;
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid mark! Please enter a positive number.");
+                }
+
+            } while (!valid);
         }
+
 
         public void SetAnswers()
         {
