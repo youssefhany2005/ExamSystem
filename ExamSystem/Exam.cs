@@ -20,6 +20,7 @@ namespace ExamSystem
             Questions = questions;
         }
 
+
         public abstract void ShowExam();
     }
 
